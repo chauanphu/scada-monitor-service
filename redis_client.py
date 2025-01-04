@@ -8,6 +8,7 @@ client = redis.Redis(
     db=0,
     decode_responses=True
 )
+print(f"Connecting to Redis at {REDIS_HOST}:{REDIS_PORT}")
 
 def get_redis_client() -> redis.Redis:
     return client

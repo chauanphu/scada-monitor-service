@@ -1,6 +1,5 @@
 from paho.mqtt import client as mqtt_client
 
-from enum import Enum
 import pytz
 from config import MQTT_BROKER, MQTT_PORT
 import re
@@ -9,11 +8,9 @@ import random
 from datetime import datetime
 import json
 
-from models import SensorModel
 from schemas import SensorDataCreate
 from crud import create_sensor_data
 from redis_client import client as redis_client
-from websocket import manager
 
 local_tz = pytz.timezone('Asia/Ho_Chi_Minh')  # Or your local timezone
 
@@ -54,6 +51,7 @@ class Client(mqtt_client.Client):
             redis_client.set(key, payload)
             # Insert data to MongoDB
             create_sensor_data(sensor_data)
+            print(f"Received data from {unit_id}")
 
         except Exception as e:
             print(f"Data validation error: {e}")

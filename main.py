@@ -1,4 +1,3 @@
-import asyncio
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, status
 from mqtt_client import client
 from websocket import manager
